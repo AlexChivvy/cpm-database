@@ -4,7 +4,8 @@
   "description": "Database for tracking student presence and progress",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -22,14 +23,20 @@
     "cloudinary": "^1.18.1",
     "connect-ensure-login": "^0.1.1",
     "connect-mongo": "^3.2.0",
+    "cookie-parser": "^1.4.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "hbs": "^4.0.6",
+    "http": "0.0.0",
     "mongoose": "^5.8.7",
+    "morgan": "^1.9.1",
     "multer": "^1.4.2",
     "multer-storage-cloudinary": "^2.2.1",
+    "node": "^13.6.0",
+    "nodemon": "^2.0.2",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "serve-favicon": "^2.5.0"
   }
 }

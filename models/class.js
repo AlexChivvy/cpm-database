@@ -27,6 +27,8 @@ const ClassRecordSchema = new Schema({
   classDate: Date,
   classProfessor: String,
   studentName: String,
+
+  // ADMIN
   timestampCreated: Date,
   timestampEdited: Date,
 });
