@@ -1,8 +1,14 @@
-const mongoose     = require('mongoose');
-const Schema       = mongoose.Schema;
+const mongoose = require('mongoose');
+const { Schema, model } = mongoose;
+
+// Above is the deconstructed version of the below code
+// const Schema = mongoose.Schema;
+// Which in turn would correspond to the following export structure.
+// module.exports = mongoose.model('ProfessorRecord',ProfessorRecordSchema);
 
 const StudentRecordSchema = new Schema({
   studentName: String,
+  studentCurrentClassGroup: String,
   studentUniqueID: String,
   studentBirthday: Date,
   studentDocumentRG: String,
@@ -12,7 +18,8 @@ const StudentRecordSchema = new Schema({
   responsibleAdultTelephone: Number,
   timestampCreated: Date,
   timestampEdited: Date,
-  // Additional factors for later use
+  
+// Additional factors for later use
 //   factorOnlinePreMatricula: {
 //     type: [Boolean],
 //   },
@@ -34,5 +41,4 @@ const StudentRecordSchema = new Schema({
 });
 
 //EXPORT THE MODEL
-const StudentRecord = mongoose.model('StudentRecord',StudentRecordSchema);
-module.exports = {StudentRecord}
+module.exports = model('StudentRecord',StudentRecordSchema);
