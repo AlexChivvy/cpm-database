@@ -16,4 +16,12 @@
   <p class="account-message">
     Don't have an account? <a href="/signup">Sign up</a>
   </p>
+
+  {{#unless user}}
+  Home page
+  <div>
+    <a href="/auth/google">Login With Google</a>
+  </div>
+{{/unless}}
+
 </form>
