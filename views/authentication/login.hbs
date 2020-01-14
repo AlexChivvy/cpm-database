@@ -1,19 +1,19 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 centered-form">
-      <form action="/login" method="post">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
-        </div>
+<form action="/login" method="POST" id="form">
+  <h2>Login</h2>
 
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control">
-        </div>
+  <label for="username">Username</label>
+  <input type="text" name="username">
 
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  </div>
-</div>
+  <label for="password">Password</label>
+  <input type="password" name="password">
+
+  {{#if errorMessage }}
+  <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
+
+  <button>Sign in</button>
+
+  <p class="account-message">
+    Don't have an account? <a href="/signup">Sign up</a>
+  </p>
+</form>
