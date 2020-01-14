@@ -13,7 +13,8 @@ router.get('/', (req, res, next) => {
 });
 
 
-// STUDENT INPUT RELEVANT INFORMATION
+
+// STUDENT ADMIN RELEVANT INFORMATION
 const Student = require('../models/student.js');
 
 router.get('/student-register', (req, res, next) => {
@@ -32,7 +33,8 @@ router.post('/student-record-form', (req, res, next) => {
 });
 
 
-// PROFESSOR INPUT RELEVANT INFORMATION
+
+// PROFESSOR ADMIN RELEVANT INFORMATION
 const Professor = require('../models/professor.js');
 
 router.get('/professor-register', (req, res, next) => {
@@ -50,14 +52,16 @@ router.post('/professor-record-form', (req, res, next) => {
     .catch(err => console.log(`Error while creating a new professor: ${err}`)); 
 });
 
-// CLASS INPUT RELEVANT INFORMATION
+
+
+// CLASS ADMIN RELEVANT INFORMATION
 const Class = require('../models/class.js');
 
 router.get('/class-register', (req, res, next) => {
     res.render('admin-class');
   });
 
-router.post('/professor-record-form', (req, res, next) => {
+router.post('/class-record-form', (req, res, next) => {
     //first instantiate a new object on the basis of your existing model
     const newProfessor = new Professor(req.body)
     newProfessor.timestampCreated = Date.now();
@@ -70,23 +74,34 @@ router.post('/professor-record-form', (req, res, next) => {
 
 
 
+// CLASS PROFESSOR INPUT RELEVANT INFORMATION
+router.get('/class-input-report', (req, res, next) => {
+    res.render('professor-input');
+  });
+
+
+
 // REPORT ALL STUDENTS
-router.get(`/all-students`, (req, res, next) => {
+router.get(`/student-report-all`, (req, res, next) => {
     Student.find()
         .then(result => {
-        res.render('all-students',{result});
+        res.render('student-report-all',{result});
         })
         .catch(err => console.log(`Error while showing all students: ${err}`)); 
 })
 
-// REPORT ALL PROFESSORS
-router.get(`/all-students`, (req, res, next) => {
+
+
+// REPORT ONE STUDENT
+router.get(`/student-report-individual`, (req, res, next) => {
     Student.find()
         .then(result => {
-        res.render('all-students',{result});
+        res.render('student-report-individual',{result});
         })
         .catch(err => console.log(`Error while showing all students: ${err}`)); 
 })
+
+
 
 // Export the module to the router
 module.exports = router;
