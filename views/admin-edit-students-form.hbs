@@ -1,5 +1,8 @@
 <div class="col-sm-6 centered-form">
     <form action="/edit-student-form" method="post">
+
+    <input name="id" value="{{result._id}}" hidden>
+
     <div class="form-group">
         <label for="studentName">Student Name: </label>
         <input type="text" name="studentName" class="form-control" value="{{result.studentName}}">

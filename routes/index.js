@@ -24,7 +24,6 @@ router.get('/student-register', (req, res, next) => {
 router.post('/student-record-form', (req, res, next) => {
     //first instantiate a new object on the basis of your existing model
     const newStudent = new Student(req.body)
-    console.log(req.body.studentBirthday)
     newStudent.timestampCreated = Date.now();
     //then save the new object in your database
     newStudent
@@ -97,21 +96,28 @@ router.get(`/edit-students`, (req, res, next) => {
 // ADMIN EDIT ONE STUDENT ONLY
 router.get(`/edit-student-form/:id`, (req, res, next) => {
     const { id } = req.params;
-    const fixedDate = dateConvert(req.params.Date);
     Student.findById(id)
         .then(result => {
-        res.render('admin-edit-students-form',{result},fixedDate);
+        //Fix the date using the below formula
+        res.render('admin-edit-students-form',{result, fixedDate: dateSimpleConvert(result.studentBirthday).substring(0, 10)});
         })
         .catch(err => console.log(`Error while showing all students: ${err}`)); 
 })
 
+router.post(`/edit-student-form`, (req, res, next) => {
+    const { id } = req.body;
+    Student.findByIdAndUpdate(id, req.body)
+    .then(updatedStudent => res.redirect(`/edit-students`))
+    .catch(err => console.log(`Error while creating a new student: ${err}`)); 
+});
+
+
 // ADMIN DELETE ONE STUDENT ONLY
 router.get(`/delete-student-refresh/:id`, (req, res, next) => {
-    Student.find()
-        .then(result => {
-        res.render('admin-edit-students-form',{result});
-        })
-        .catch(err => console.log(`Error while showing all students: ${err}`)); 
+    const { id } = req.params;
+    Student.findByIdAndDelete(id)
+    .then(updatedStudent => res.redirect(`/edit-students`))
+    .catch(err => console.log(`Error while creating a new student: ${err}`)); 
 })
 
 // REPORT ALL STUDENTS
@@ -139,49 +145,9 @@ router.get(`/student-report-individual`, (req, res, next) => {
 
 // Formula to fix date
 
-const dateConvert = (input) => {
-    let month;
-    const dateArray = input.split(" ");
-    switch (dateArray[1]) {
-      case `Jan`:
-        month = `01`
-        break
-      case `Feb`:
-        month = `02`
-        break
-       case `Mar`:
-        month = `03`
-        break
-       case `Apr`:
-        month = `04`
-        break
-       case `May`:
-        month = `05`
-        break
-       case `Jun`:
-        month = `06`
-        break
-       case `Jul`:
-        month = `07`
-        break
-      case `Aug`:
-        month = `08`
-        break
-       case `Sep`:
-        month = `09`
-        break
-       case `Oct`:
-        month = `10`
-        break
-       case `Nov`:
-        month = `11`
-        break
-       case `Dec`:
-        month = `12`
-        break
-    }
-    return `${dateArray[3]}-${month}-${dateArray[2]}`
-  }
+const dateSimpleConvert = (input) => {
+    return input.toISOString()
+}
 
 // Export the module to the router
 module.exports = router;

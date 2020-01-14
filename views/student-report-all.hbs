@@ -1,62 +1,15 @@
-<h1>Class Input Report</h1>
-<br>
-
-<form action="/professor-input-form" method="post"></form>
+{{!-- In order to render non-HTML code in HBS you must use double brackets "mustache" --}}
 
 {{#each result}}
-<div class="professor-input-form">
-
-    <div class="professor-input-row">
-
-        <div class="professor-input-components">
-            <h2>{{studentName}}</h2>
-            <h3>{{responsibleAdultName}}</h3>
-        </div>
-
-        <div class="professor-input-components">
-            <div class="form-group">
-                <label for="factorPresent">Attendance: </label>
-                <select name="factorPresent" class="form-control">
-                    <option value = "1" selected="selected">Present</option>
-                    <option value = "1/2">Late</option>
-                    <option value = "0">Absent</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="gradeHomework">Homework Grade: </label>
-                <select  name="gradeHomework" class="form-control">
-                    <option value = "1" selected="selected">Completed</option>
-                    <option value = "1/2">Incomplete</option>
-                    <option value = "0">Not Done</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="gradeParticipation">Participation: </label>
-                <select  name="gradeParticipation" class="form-control">
-                    <option value = "1" selected="selected">Full</option>
-                    <option value = "1/2">Partial</option>
-                    <option value = "0">None</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="factorGoodBehavior">Behavior: </label>
-                <select name="factorGoodBehavior" class="form-control">
-                    <option value = "1" selected="selected">Good</option>
-                    <option value = "1/2">Poor</option>
-                    <option value = "0">Disruptive</option>
-                    <option value = "null">N/A</option>
-                </select>
-            </div>
-
-        </div>
-    </div>
+    <h2>{{studentName}}</h2>
+    <h3>{{responsibleAdultName}}</h3>
+    <hr>
     <br>
-</div>
 {{/each}}
 
-<button type="submit">Submit</button>
-</form>
-<br>
+
+
+
 <a href ="/">
 <button name="return">Return to home page</button><br><br>
 </a>
