@@ -3,7 +3,9 @@ const router = express.Router();
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
+const passport = require("passport");
 
+//signup
 router.get("/signup", (req, res, next) => {
   res.render("authentication/signup");
 });
@@ -14,7 +16,6 @@ router.post("/signup", (req, res, next) => {
   const salt = bcrypt.genSaltSync(bcryptSalt);
   const hashPass = bcrypt.hashSync(password, salt);
 
-  // res.send('hi')
   if (username === "" || password === "") {
     res.render("authentication/signup", {
       errorMessage: "Indicate a username and a password to sign up",
@@ -50,6 +51,8 @@ router.post("/signup", (req, res, next) => {
     })
 });
 
+
+//login
 router.get("/login", (req, res, next) => {
   res.render("authentication/login");
 });
@@ -76,7 +79,6 @@ router.post("/login", (req, res, next) => {
         return;
       }
       if (bcrypt.compareSync(thePassword, user.password)) {
-        // Save the login in the session!
         req.session.currentUser = user;
         res.redirect("/");
       } else {
@@ -89,5 +91,23 @@ router.post("/login", (req, res, next) => {
       next(error);
     })
 });
+
+//google
+router.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email"
+    ]
+  })
+);
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "/private-page",
+    failureRedirect: "/" 
+  })
+);
 
 module.exports = router;

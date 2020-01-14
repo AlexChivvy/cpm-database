@@ -8,9 +8,11 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
-const session      = require("express-session");
-const MongoStore   = require("connect-mongo")(session); 
-
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+const passport = require("passport");
+const User = require("./models/user")
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 mongoose
   .connect('mongodb://localhost/cpm-database', {
@@ -55,16 +57,49 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 app.use(session({
   secret: "basic-auth-secret",
-  cookie: { maxAge: 60000 },
+  cookie: {
+    maxAge: 60000
+  },
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60 // 1 day
   })
 }));
 
+passport.use(
+  new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: "/auth/google/callback"
+    },
+    (accessToken, refreshToken, profile, done) => {
+      User.findOne({
+          googleID: profile.id
+        })
+        .then(user => {
+          if (user) {
+            done(null, user);
+            return;
+          }
+
+          User.create({
+              googleID: profile.id
+            })
+            .then(newUser => {
+              done(null, newUser);
+            })
+            .catch(err => done(err));
+        })
+        .catch(err => done(err));
+    }
+  )
+);
+
 const index = require('./routes/index');
 app.use('/', index);
 
 app.use('/', require('./routes/authentication'));
+
+
 
 module.exports = app;
