@@ -75,11 +75,50 @@ router.post('/class-record-form', (req, res, next) => {
 
 
 // CLASS PROFESSOR INPUT RELEVANT INFORMATION
-router.get('/class-input-report', (req, res, next) => {
-    res.render('professor-input');
-  });
+router.get(`/class-input-report`, (req, res, next) => {
+    Student.find()
+        .then(result => {
+        res.render('professor-input',{result});
+        })
+        .catch(err => console.log(`Error while showing all students: ${err}`)); 
+})
 
 
+// ADMIN EDIT OR DELETE STUDENTS
+router.get(`/edit-students`, (req, res, next) => {
+    Student.find()
+        .then(result => {
+        res.render('admin-edit-students',{result});
+        })
+        .catch(err => console.log(`Error while showing all students: ${err}`)); 
+})
+
+// ADMIN EDIT ONE STUDENT ONLY
+router.get(`/edit-student-form/:id`, (req, res, next) => {
+    const { id } = req.params;
+    Student.findById(id)
+        .then(result => {
+        //Fix the date using the below formula
+        res.render('admin-edit-students-form',{result, fixedDate: dateSimpleConvert(result.studentBirthday).substring(0, 10)});
+        })
+        .catch(err => console.log(`Error while showing all students: ${err}`)); 
+})
+
+router.post(`/edit-student-form`, (req, res, next) => {
+    const { id } = req.body;
+    Student.findByIdAndUpdate(id, req.body)
+    .then(updatedStudent => res.redirect(`/edit-students`))
+    .catch(err => console.log(`Error while creating a new student: ${err}`)); 
+});
+
+
+// ADMIN DELETE ONE STUDENT ONLY
+router.get(`/delete-student-refresh/:id`, (req, res, next) => {
+    const { id } = req.params;
+    Student.findByIdAndDelete(id)
+    .then(updatedStudent => res.redirect(`/edit-students`))
+    .catch(err => console.log(`Error while creating a new student: ${err}`)); 
+})
 
 // REPORT ALL STUDENTS
 router.get(`/student-report-all`, (req, res, next) => {
@@ -103,5 +142,13 @@ router.get(`/student-report-individual`, (req, res, next) => {
 
 
 
+
+// Formula to fix date
+
+const dateSimpleConvert = (input) => {
+    return input.toISOString()
+}
+
 // Export the module to the router
 module.exports = router;
+
