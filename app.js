@@ -11,7 +11,10 @@ const path = require('path');
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const passport = require("passport");
-const User = require("./models/user")
+const User = require("./models/user");
+const bcrypt = require("bcrypt");
+const bcryptSalt = 10;
+const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 mongoose
@@ -66,11 +69,37 @@ app.use(session({
   })
 }));
 
+passport.serializeUser((user, cb) => {
+  cb(null, user._id);
+});
+
+passport.deserializeUser((id, cb) => {
+  User.findById(id, (err, user) => {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+
+passport.use(new LocalStrategy((username, password, next) => {
+  User.findOne({ username }, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return next(null, false, { message: "Incorrect username" });
+    }
+    if (!bcrypt.compareSync(password, user.password)) {
+      return next(null, false, { message: "Incorrect password" });
+    }
+
+    return next(null, user);
+  });
+}));
+
 // Init passport authentication 
 app.use(passport.initialize());
 // persistent login sessions 
 app.use(passport.session());
-
 
 passport.use(
   new GoogleStrategy({

@@ -14,6 +14,7 @@ router.get("/signup", (req, res, next) => {
 });
 
 router.post("/signup", (req, res, next) => {
+  const role = req.body.role;
   const username = req.body.username;
   const password = req.body.password;
   const salt = bcrypt.genSaltSync(bcryptSalt);
@@ -40,7 +41,8 @@ router.post("/signup", (req, res, next) => {
 
       User.create({
           username,
-          password: hashPass
+          password: hashPass,
+          role
         })
         .then(() => {
           res.redirect("/");
@@ -60,40 +62,12 @@ router.get("/login", (req, res, next) => {
   res.render("authentication/login");
 });
 
-router.post("/login", (req, res, next) => {
-  const theUsername = req.body.username;
-  const thePassword = req.body.password;
-
-  if (theUsername === "" || thePassword === "") {
-    res.render("authentication/login", {
-      errorMessage: "Please enter both, username and password to sign up."
-    });
-    return;
-  }
-
-  User.findOne({
-      "username": theUsername
-    })
-    .then(user => {
-      if (!user) {
-        res.render("authentication/login", {
-          errorMessage: "The username doesn't exist."
-        });
-        return;
-      }
-      if (bcrypt.compareSync(thePassword, user.password)) {
-        req.session.currentUser = user;
-        res.redirect("/");
-      } else {
-        res.render("authentication/login", {
-          errorMessage: "Incorrect password"
-        });
-      }
-    })
-    .catch(error => {
-      next(error);
-    })
-});
+router.post("/login", passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "/login",
+  failureFlash: true,
+  passReqToCallback: true,
+}));
 
 //google
 router.get(

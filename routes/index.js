@@ -43,7 +43,7 @@ router.post('/student-record-form', (req, res, next) => {
 // PROFESSOR ADMIN RELEVANT INFORMATION
 const Professor = require('../models/professor.js');
 
-router.get('/professor-register', checkDirector,(req, res, next) => {
+router.get('/professor-register', checkDirector, (req, res, next) => {
   res.render('admin-professor');
 });
 
@@ -63,8 +63,7 @@ router.post('/professor-record-form', (req, res, next) => {
 // CLASS ADMIN RELEVANT INFORMATION
 const Class = require('../models/class.js');
 
-////checkRoles('teacher') only the teacher has access
-router.get('/class-register',  checkTeacher, (req, res, next) => {
+router.get('/class-register', checkDirector, (req, res, next) => {
   res.render('admin-class');
 });
 
