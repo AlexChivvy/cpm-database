@@ -9,7 +9,7 @@ const {
 } = require("../middlewares/roles");
 
 //signup
-router.get("/signup", checkDirector, (req, res, next) => {
+router.get("/signup", (req, res, next) => {
   res.render("authentication/signup");
 });
 

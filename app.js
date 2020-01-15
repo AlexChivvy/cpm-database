@@ -71,15 +71,6 @@ app.use(passport.initialize());
 // persistent login sessions 
 app.use(passport.session());
 
-// passport.use(new LocalStrategy(function(username, password, done) {
-//   //return done(null, user);
-//   if (username=='ben' && password=='benny'){
-//       console.log("Password correct");
-//       return done(null, true);
-//   }
-//   else
-//       return done(null, false, {message: "Incorrect Login"});
-// }));
 
 passport.use(
   new GoogleStrategy({
