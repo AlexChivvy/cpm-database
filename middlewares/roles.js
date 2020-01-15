@@ -2,7 +2,7 @@
 const checkRoles = (role) => {
   return function (req, res, next) { 
     // console.log(req.isAuthenticated());
-    // console.log(req.user.role);
+    console.log(req.user.role);
     
     if (req.isAuthenticated() && req.user.role === role) {
       return next();
