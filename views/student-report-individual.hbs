@@ -1,5 +1,95 @@
 <h1>Report One Student [TO COME]</h1>
 
+        <div class="input-row">
+            <div class="input-components">
+                <input name="id" value="{{result._id}}" hidden>
+                <h2>Name: {{result.[0].studentUniqueID.studentName}}</h2>
+                <p>Responsible Adult: {{result.[0].studentUniqueID.responsibleAdultName}}</p>
+            </div>
+            <div class="input-row">
+                <div>
+                    <p>Presence:</p>
+                    <p>{{summary.reportedPresentText}}</p>
+                    <p>{{summary.historyPresent}} / {{summary.totalDays}}</p>
+                </div>
+                <div>
+                    <p>Behavior:</p> 
+                    <p>{{summary.reportedGoodBehaviorText}}</p>
+                    <p>{{summary.historyGoodBehavior}} / {{summary.totalDays}}</p>
+                </div>
+                <div>
+                    <p>Homework: </p> 
+                    <p>{{summary.reportedHomeworkText}}</p>
+                    <p>{{summary.historyHomework}} / {{summary.totalDays}}</p>
+                </div>
+                <div>
+                    <p>Participation: </p> 
+                    <p>{{summary.reportedParticipationText}}</p>
+                    <p>{{summary.historyParticipation}} / {{summary.totalDays}}</p>
+                </div>
+                <div>
+                    <p>Exam: </p> 
+                    <p>{{summary.examText}}</p>
+                    <p>{{summary.reportedExam}} / 10 </p>
+                </div>
+
+            </div>
+        </div>
+    <hr>
+    <br>
+
+{{#each result}}
+        <div class="input-components">
+                <div>
+                    <p>Presence:</p>
+                    <p>{{factorPresent}} / 1</p>
+                </div>
+                <div>
+                    <p>Behavior:</p> 
+                    <p>{{factorGoodBehavior}} / 1</p>
+                </div>            
+        </div>
+        <div class="input-row">
+                <div>
+                    <p>Class Group:</p>
+                    <p>{{classUniqueID.classGroup}}</p>
+                </div>
+                <div>
+                    <p>Class Date:</p>
+                    <p>{{classUniqueID.classDate}}</p>
+                </div>
+                <div>
+                    <p>Class Semester:</p>
+                    <p>{{classUniqueID.classSemester}}</p>
+                </div>
+                <div>
+                    <p>Class Type:</p>
+                    <p>{{classUniqueID.classType}}</p>
+                </div>
+                <div>
+                    <p>Class Professor:</p>
+                    <p>{{classUniqueID.classProfessor}}</p>
+                </div>
+                <div>
+                    <p>Presence:</p>
+                    <p>{{factorPresent}} / 1</p>
+                </div>
+                <div>
+                    <p>Behavior:</p> 
+                    <p>{{factorGoodBehavior}} / 1</p>
+                </div>
+                <div>
+                    <p>Homework: </p> 
+                    <p>{{gradeHomework}} / 1</p>
+                </div>
+                <div>
+                    <p>Participation: </p> 
+                     <p>{{gradeParticipation}} / 1</p>
+                </div>
+        </div>
+    <hr>
+    <br>
+{{/each}}
 
 <a href ="/">
 <button name="return">Return to home page</button><br><br>

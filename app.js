@@ -133,6 +133,8 @@ passport.use(
 const index = require('./routes/index');
 app.use('/', index);
 
-app.use('/', require('./routes/authentication'));
+const reports = require('./routes/reports');
+app.use('/', reports);
 
+app.use('/', require('./routes/authentication'));
 module.exports = app;
