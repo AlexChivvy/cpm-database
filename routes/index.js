@@ -24,6 +24,9 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
+// MOUNT AUTH ROUTES
+router.use('/', require('./authentication'))
+
 // STUDENT ADMIN RELEVANT INFORMATION
 
 //checkDirector only the director has access
@@ -44,8 +47,6 @@ router.post('/student-record-form', (req, res, next) => {
 });
 
 // PROFESSOR ADMIN RELEVANT INFORMATION
-
-
 router.get('/professor-register', checkDirector, (req, res, next) => {
   res.render('admin-professor');
 });
@@ -91,6 +92,7 @@ router.get(`/class-input-report`, (req, res, next) => {
       });
     })
     .catch(err => console.log(`Error while showing all students: ${err}`));
+});
 
 router.get('/class-register', (req, res, next) => {
     res.render('admin-class');
@@ -201,16 +203,16 @@ router.get(`/delete-student-refresh/:id`, (req, res, next) => {
     .catch(err => console.log(`Error while creating a new student: ${err}`));
 })
 
-// REPORT ALL STUDENTS
-router.get(`/student-report-all`, (req, res, next) => {
-  Student.find()
-    .then(result => {
-      res.render('student-report-all', {
-        result
-      });
-    })
-    .catch(err => console.log(`Error while showing all students: ${err}`));
-})
+// // REPORT ALL STUDENTS
+// router.get(`/student-report-all`, (req, res, next) => {
+//   Student.find()
+//     .then(result => {
+//       res.render('student-report-all', {
+//         result
+//       });
+//     })
+//     .catch(err => console.log(`Error while showing all students: ${err}`));
+// })
 
 // REPORT ONE STUDENT
 router.get(`/student-report-individual`, (req, res, next) => {
