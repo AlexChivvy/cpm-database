@@ -66,6 +66,12 @@ app.use(session({
   })
 }));
 
+// Init passport authentication 
+app.use(passport.initialize());
+// persistent login sessions 
+app.use(passport.session());
+
+
 passport.use(
   new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -99,7 +105,5 @@ const index = require('./routes/index');
 app.use('/', index);
 
 app.use('/', require('./routes/authentication'));
-
-
 
 module.exports = app;
