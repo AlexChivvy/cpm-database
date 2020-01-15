@@ -1,5 +1,5 @@
-const mongoose     = require('mongoose');
-const Schema       = mongoose.Schema;
+const mongoose = require('mongoose');
+const { Schema, model } = mongoose;
 
 const ProfessorRecordSchema = new Schema({
   professorName: String,
@@ -15,5 +15,4 @@ const ProfessorRecordSchema = new Schema({
 });
 
 //EXPORT THE MODEL
-const ProfessorRecord = mongoose.model('ProfessorRecord',ProfessorRecordSchema);
-module.exports = {ProfessorRecord}
+module.exports = model('ProfessorRecord',ProfessorRecordSchema);
