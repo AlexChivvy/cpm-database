@@ -4,9 +4,12 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 const passport = require("passport");
+const {
+  checkDirector
+} = require("../middlewares/roles");
 
 //signup
-router.get("/signup", (req, res, next) => {
+router.get("/signup", checkDirector, (req, res, next) => {
   res.render("authentication/signup");
 });
 
@@ -106,7 +109,7 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google", {
     successRedirect: "/private-page",
-    failureRedirect: "/" 
+    failureRedirect: "/"
   })
 );
 

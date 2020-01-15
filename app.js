@@ -66,6 +66,21 @@ app.use(session({
   })
 }));
 
+// Init passport authentication 
+app.use(passport.initialize());
+// persistent login sessions 
+app.use(passport.session());
+
+// passport.use(new LocalStrategy(function(username, password, done) {
+//   //return done(null, user);
+//   if (username=='ben' && password=='benny'){
+//       console.log("Password correct");
+//       return done(null, true);
+//   }
+//   else
+//       return done(null, false, {message: "Incorrect Login"});
+// }));
+
 passport.use(
   new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -99,7 +114,5 @@ const index = require('./routes/index');
 app.use('/', index);
 
 app.use('/', require('./routes/authentication'));
-
-
 
 module.exports = app;
