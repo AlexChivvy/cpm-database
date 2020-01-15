@@ -1,19 +1,13 @@
-const mongoose     = require('mongoose');
-const Schema       = mongoose.Schema;
+const mongoose = require('mongoose');
+const { Schema, model } = mongoose;
 
-const classTypes = [`Normal Class`, `MidTerm Exam`, `Final Exam`, `Event Day`];
+const classTypes = [`Normal`, `Midterm`, `Final Exam`, `Event Day`];
 
 const ClassRecordSchema = new Schema({
-  // STUDENT-SPECIFIC INFORMATION
-  studentUniqueID: String,
-  factorPresent: Boolean,
-  factorGoodBehavior: Boolean,
-  gradeHomework: Number,
-  gradeParticipation: Number,
-  gradeExam: Number,
   
   // CLASS-SPECIFIC INFORMATION
-  classLevel: {
+  classUniqueID: String,
+  classGroup: {
     type: [String],
     //Adults A
   },
@@ -33,6 +27,4 @@ const ClassRecordSchema = new Schema({
 });
 
 //EXPORT THE MODEL
-const ClassRecord = mongoose.model('ClassRecord',ClassRecordSchema);
-module.exports = {ClassRecord}
-
+module.exports = model('ClassRecord',ClassRecordSchema);

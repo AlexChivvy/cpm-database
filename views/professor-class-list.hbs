@@ -1,4 +1,4 @@
-<h1>Delete / Edit Students</h1>
+<h1>Class Input Report</h1>
 <br>
 
 {{#each result}}
@@ -7,19 +7,24 @@
     <div class="input-row">
 
         <div class="input-components">
-            <h2>{{studentName}}</h2>
-            <h3>{{responsibleAdultName}}</h3>
+            <h2>{{classGroup}}</h2>
+            <h3>{{classSemester}}</h3>
+            <h3>{{classDate}}</h3>
         </div>
         
         <div class="input-components">
 
-<a href ="/edit-student-form/{{_id}}">
+<a href ="/class-input-report/{{_id}}">
+<button name="class-input-report">Edit Student Records</button><br><br>
+</a>
+
+{{!-- <a href ="/edit-student-form/{{_id}}">
 <button name="edit">Edit</button><br><br>
 </a>
 
 <a href ="/delete-student-refresh/{{_id}}">
 <button name="delete">Delete</button><br><br>
-</a>  
+</a>   --}}
 
         </div>
     </div>

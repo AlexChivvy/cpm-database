@@ -1,7 +1,7 @@
 <h1>Class Input Report</h1>
 <br>
 
-<form action="/professor-input-form" method="post"></form>
+<form action="/class-input-report/{{id}}" method="post">
 
 {{#each result}}
 <div class="input-form">
@@ -11,6 +11,7 @@
         <div class="input-components">
             <h2>{{studentName}}</h2>
             <h3>{{responsibleAdultName}}</h3>
+            <input name="studentUniqueID" value="{{_id}}" hidden>
         </div>
 
         <div class="input-components">
@@ -47,15 +48,25 @@
                     <option value = "null">N/A</option>
                 </select>
             </div>
+            <div class="form-group">
+                <label for="gradeExam">Grade Exam - If Applicable: </label>
+                <input type="number" name="gradeExam" class="form-control" value="0">
+            </div>
 
         </div>
     </div>
     <br>
 </div>
 {{/each}}
-
-<button name="submit">Submit</button>
+<button type="submit">Submit</button>
 </form>
+
+<br>
+
+<a href ="/class-list">
+<button name="class-list">Return to class list page</button><br><br>
+</a>
+
 <br>
 <a href ="/">
 <button name="return">Return to home page</button><br><br>
