@@ -45,7 +45,7 @@ router.post("/signup", (req, res, next) => {
           role
         })
         .then(() => {
-          res.redirect("/app");
+          res.redirect("/login");
         })
         .catch(error => {
           console.log(error);

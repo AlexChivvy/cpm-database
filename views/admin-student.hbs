@@ -45,6 +45,10 @@
 		<button type="submit">Submit</button>
 	</form>
 	
+		{{#if successMessage}}
+		<div class="success-message">{{ successMessage }}</div>
+		{{/if}}  
+
 	<a href="/app">
 	<button name="return">Return to Control Panel</button><br><br>
 	</a>

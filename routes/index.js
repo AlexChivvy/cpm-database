@@ -56,7 +56,7 @@ router.post('/student-record-form', (req, res, next) => {
   //then save the new object in your database
   newStudent
     .save()
-    .then(newStudentCreated => res.send(`A new student is created: ${newStudentCreated}!`))
+    .then(newStudentCreated => res.render('admin-student', {successMessage: "Student sucessfully created!"}))
     .catch(err => console.log(`Error while creating a new student: ${err}`));
 });
 
@@ -80,21 +80,20 @@ router.post('/professor-record-form', (req, res, next) => {
 
 // CLASS ADMIN RELEVANT INFORMATION
 
-
 router.get('/class-register', checkAdmin, (req, res, next) => {
   res.render('admin-class');
 });
 
-router.post('/class-record-form', (req, res, next) => {
-  //first instantiate a new object on the basis of your existing model
-  const newProfessor = new Professor(req.body)
-  newProfessor.timestampCreated = Date.now();
-  //then save the new object in your database
-  newProfessor
-    .save()
-    .then(newProfessorCreated => res.send(`A new professor is created: ${newProfessorCreated}!`))
-    .catch(err => console.log(`Error while creating a new professor: ${err}`));
-});
+// router.post('/class-record-form', (req, res, next) => {
+//   //first instantiate a new object on the basis of your existing model
+//   const newProfessor = new Professor(req.body)
+//   newProfessor.timestampCreated = Date.now();
+//   //then save the new object in your database
+//   newProfessor
+//     .save()
+//     .then(newProfessorCreated => res.send(`A new professor is created: ${newProfessorCreated}!`))
+//     .catch(err => console.log(`Error while creating a new professor: ${err}`));
+// });
 
 //limite juliane
 
@@ -120,7 +119,7 @@ router.post('/class-record-form', (req, res, next) => {
   //then save the new object in your database
   newClass
     .save()
-    .then(newClassCreated => res.send(`A new class is created: ${newClassCreated}!`))
+    .then(newClassCreated => res.render('admin-class', {successMessage: "Class sucessfully created!"}))
     .catch(err => console.log(`Error while creating a new class: ${err}`));
 });
 
