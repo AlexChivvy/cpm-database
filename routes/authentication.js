@@ -59,7 +59,15 @@ router.post("/signup", (req, res, next) => {
 
 //login
 router.get("/login", (req, res, next) => {
-  res.render("authentication/login");
+  let UserNavData = {
+    UserName: "Not Logged In",
+    AcessLevel: "No"
+  }
+  if (req.user) {
+    UserNavData.UserName = req.user.username;
+    UserNavData.AcessLevel = req.user.role;
+  }
+  res.render("authentication/login", {UserNavData});
 });
 
 router.post("/login", passport.authenticate("local", {

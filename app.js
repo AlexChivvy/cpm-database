@@ -16,9 +16,12 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const flash = require("connect-flash");
+
+// mongoose configured to the ENV file, which locally runs on a specified port with a local database but once deployed will run on mLab database.
 
 mongoose
-  .connect('mongodb://localhost/cpm-database', {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true
   })
   .then(x => {
@@ -39,6 +42,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+app.use(flash());
 app.use(cookieParser());
 
 // Express View engine setup
@@ -139,6 +143,8 @@ app.get('/', (req, res, next) => {
 const index = require('./routes/index');
 app.use('/', index);
 
-app.use('/', require('./routes/authentication'));
+const reports = require('./routes/reports');
+app.use('/', reports);
 
+app.use('/', require('./routes/authentication'));
 module.exports = app;
