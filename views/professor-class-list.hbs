@@ -4,21 +4,21 @@
 {{#each result}}
 <div class="input-form">
 
-    <div class="input-row">
+  <div class="input-row">
 
-        <div class="input-components">
-            <h2>{{classGroup}}</h2>
-            <h3>{{classSemester}}</h3>
-            <h3>{{classDate}}</h3>
-        </div>
-        
-        <div class="input-components">
+    <div class="input-components">
+      <h2>{{classGroup}}</h2>
+      <h3>{{classSemester}}</h3>
+      <h3>{{classDate}}</h3>
+    </div>
 
-<a href ="/class-input-report/{{_id}}">
-<button name="class-input-report">Edit Student Records</button><br><br>
-</a>
+    <div class="input-components">
 
-{{!-- <a href ="/edit-student-form/{{_id}}">
+      <a href="/class-input-report/{{_id}}">
+        <button name="class-input-report">Edit Student Records</button><br><br>
+      </a>
+
+      {{!-- <a href ="/edit-student-form/{{_id}}">
 <button name="edit">Edit</button><br><br>
 </a>
 
@@ -26,14 +26,14 @@
 <button name="delete">Delete</button><br><br>
 </a>   --}}
 
-        </div>
     </div>
-    <br>
+  </div>
+  <br>
 </div>
 {{/each}}
 
 
 <br>
-<a href ="/">
-<button name="return">Return to home page</button><br><br>
+<a href="/">
+  <button name="return">Return to home page</button><br><br>
 </a>

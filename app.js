@@ -130,6 +130,12 @@ passport.use(
   )
 );
 
+
+// HOME PAGE
+app.get('/', (req, res, next) => {
+  res.render('home');
+});
+
 const index = require('./routes/index');
 app.use('/', index);
 

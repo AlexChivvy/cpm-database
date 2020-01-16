@@ -3,71 +3,71 @@
 
 <form action="/class-input-report/{{id}}" method="post">
 
-{{#each result}}
-<div class="input-form">
+  {{#each result}}
+  <div class="input-form">
 
     <div class="input-row">
 
-        <div class="input-components">
-            <h2>{{studentName}}</h2>
-            <h3>{{responsibleAdultName}}</h3>
-            <input name="studentUniqueID" value="{{_id}}" hidden>
+      <div class="input-components">
+        <h2>{{studentName}}</h2>
+        <h3>{{responsibleAdultName}}</h3>
+        <input name="studentUniqueID" value="{{_id}}" hidden>
+      </div>
+
+      <div class="input-components">
+        <div class="form-group">
+          <label for="factorPresent">Attendance: </label>
+          <select name="factorPresent" class="form-control">
+            <option value="1" selected="selected">Present</option>
+            <option value="1/2">Late</option>
+            <option value="0">Absent</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="gradeHomework">Homework Grade: </label>
+          <select name="gradeHomework" class="form-control">
+            <option value="1" selected="selected">Completed</option>
+            <option value="1/2">Incomplete</option>
+            <option value="0">Not Done</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="gradeParticipation">Participation: </label>
+          <select name="gradeParticipation" class="form-control">
+            <option value="1" selected="selected">Full</option>
+            <option value="1/2">Partial</option>
+            <option value="0">None</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="factorGoodBehavior">Behavior: </label>
+          <select name="factorGoodBehavior" class="form-control">
+            <option value="1" selected="selected">Good</option>
+            <option value="1/2">Poor</option>
+            <option value="0">Disruptive</option>
+            <option value="null">N/A</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="gradeExam">Grade Exam - If Applicable: </label>
+          <input type="number" name="gradeExam" class="form-control" value="0">
         </div>
 
-        <div class="input-components">
-            <div class="form-group">
-                <label for="factorPresent">Attendance: </label>
-                <select name="factorPresent" class="form-control">
-                    <option value = "1" selected="selected">Present</option>
-                    <option value = "1/2">Late</option>
-                    <option value = "0">Absent</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="gradeHomework">Homework Grade: </label>
-                <select  name="gradeHomework" class="form-control">
-                    <option value = "1" selected="selected">Completed</option>
-                    <option value = "1/2">Incomplete</option>
-                    <option value = "0">Not Done</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="gradeParticipation">Participation: </label>
-                <select  name="gradeParticipation" class="form-control">
-                    <option value = "1" selected="selected">Full</option>
-                    <option value = "1/2">Partial</option>
-                    <option value = "0">None</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="factorGoodBehavior">Behavior: </label>
-                <select name="factorGoodBehavior" class="form-control">
-                    <option value = "1" selected="selected">Good</option>
-                    <option value = "1/2">Poor</option>
-                    <option value = "0">Disruptive</option>
-                    <option value = "null">N/A</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="gradeExam">Grade Exam - If Applicable: </label>
-                <input type="number" name="gradeExam" class="form-control" value="0">
-            </div>
-
-        </div>
+      </div>
     </div>
     <br>
-</div>
-{{/each}}
-<button type="submit">Submit</button>
+  </div>
+  {{/each}}
+  <button type="submit">Submit</button>
 </form>
 
 <br>
 
-<a href ="/class-list">
-<button name="class-list">Return to class list page</button><br><br>
+<a href="/class-list">
+  <button name="class-list">Return to class list page</button><br><br>
 </a>
 
 <br>
-<a href ="/">
-<button name="return">Return to home page</button><br><br>
+<a href="/">
+  <button name="return">Return to home page</button><br><br>
 </a>
