@@ -1,7 +1,17 @@
+html {
+  height: 100%;
+}
 body {
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
   font-size: 14px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
+.content {
+  flex: 1;
+}
+
 
 .input-form{
   width: 100%;

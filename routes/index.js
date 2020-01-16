@@ -22,7 +22,15 @@ const ClassStudentRegister = require('../models/class-student-register.js');
 
 // HOME PAGE
 router.get('/app', checkAdminProfessorStudent, (req, res, next) => {
-  res.render('index');
+  const UserNavData = {
+    UserName: "Not Logged In",
+    AcessLevel: "No"
+  }
+  if (req.user) {
+    UserNavData.UserName = req.user.username;
+    UserNavData.AcessLevel = req.user.role;
+  }
+  res.render("index", {UserNavData});
 });
 
 // MOUNT AUTH ROUTES
