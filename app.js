@@ -18,8 +18,10 @@ const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const flash = require("connect-flash");
 
+// mongoose configured to the ENV file, which locally runs on a specified port with a local database but once deployed will run on mLab database.
+
 mongoose
-  .connect('mongodb://localhost/cpm-database', {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true
   })
   .then(x => {
