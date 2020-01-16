@@ -1,13 +1,24 @@
 {{!-- In order to render non-HTML code in HBS you must use double brackets "mustache" --}}
 
 {{#each result}}
-<h2>{{studentName}}</h2>
-<h3>{{responsibleAdultName}}</h3>
-<hr>
-<br>
+
+        <div class="input-row">
+            <div class="input-components">
+                <input name="id" value="{{result._id}}" hidden>
+                <h2>Name: {{studentName}}</h2>
+                <p>Responsible Adult: {{responsibleAdultName}}</p>
+            </div>
+            <div class="input-components">
+
+                <a href ="/student-report-individual/{{_id}}">
+                <button name="individual-report">Individual Report</button><br><br>
+                </a>
+
+            </div>
+        </div>
+    <hr>
+    <br>
 {{/each}}
-
-
 
 
 <a href="/">

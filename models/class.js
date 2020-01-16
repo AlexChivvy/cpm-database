@@ -8,13 +8,13 @@ const ClassRecordSchema = new Schema({
   // CLASS-SPECIFIC INFORMATION
   classUniqueID: String,
   classGroup: {
-    type: [String],
+    type: String,
     //Adults A
   },
   classSemester: String,
     //2020.1
   classType: {
-    type: [String],
+    type: String,
     enum: classTypes,
     //As per classTypes: Normal Class, Midterm Exam, etc.
   },

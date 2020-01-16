@@ -25,7 +25,7 @@ router.get('/app', checkAdminProfessorStudent, (req, res, next) => {
   res.render('index');
 });
 
-// mount auth routes
+// MOUNT AUTH ROUTES
 router.use('/', require('./authentication'))
 
 // STUDENT ADMIN RELEVANT INFORMATION
@@ -47,7 +47,6 @@ router.post('/student-record-form', (req, res, next) => {
 });
 
 // PROFESSOR ADMIN RELEVANT INFORMATION
-
 
 router.get('/professor-register', checkAdmin, (req, res, next) => {
   res.render('admin-professor');
@@ -219,16 +218,16 @@ router.get(`/delete-student-refresh/:id`, checkAdmin, (req, res, next) => {
     .catch(err => console.log(`Error while creating a new student: ${err}`));
 })
 
-// REPORT ALL STUDENTS
-router.get(`/student-report-all`, (req, res, next) => {
-  Student.find()
-    .then(result => {
-      res.render('student-report-all', {
-        result
-      });
-    })
-    .catch(err => console.log(`Error while showing all students: ${err}`));
-})
+// // REPORT ALL STUDENTS
+// router.get(`/student-report-all`, (req, res, next) => {
+//   Student.find()
+//     .then(result => {
+//       res.render('student-report-all', {
+//         result
+//       });
+//     })
+//     .catch(err => console.log(`Error while showing all students: ${err}`));
+// })
 
 // REPORT ONE STUDENT
 router.get(`/student-report-individual`, (req, res, next) => {
