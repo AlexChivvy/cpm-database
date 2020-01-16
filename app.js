@@ -16,6 +16,7 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const flash = require("connect-flash");
 
 mongoose
   .connect('mongodb://localhost/cpm-database', {
@@ -39,6 +40,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+app.use(flash());
 app.use(cookieParser());
 
 // Express View engine setup
