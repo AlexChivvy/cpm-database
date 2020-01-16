@@ -1,47 +1,50 @@
-<div class="col-sm-6 centered-form">
-  <form action="/professor-record-form" method="post">
-    <div class="form-group">
-      <label for="professorName">Professor Name: </label>
-      <input type="text" name="professorName" class="form-control">
-    </div>
+<div class="long-centered">
+  <h2>Add Professor</h2>
+  <div class="col-sm-6 centered-form">
+    <form action="/professor-record-form" method="post">
+      <div class="form-group">
+        <label for="professorName">Professor Name: </label>
+        <input type="text" name="professorName" class="form-control">
+      </div>
 
-    <div class="form-group">
-      <label for="professorBirthday">Professor Birthdate: </label>
-      <input type="date" name="professorBirthday" class="form-control">
-    </div>
+      <div class="form-group">
+        <label for="professorBirthday">Professor Birthdate: </label>
+        <input type="date" name="professorBirthday" class="form-control">
+      </div>
 
-    <div class="form-group">
-      <label for="professorDocumentRG">Professor RG / Document: </label>
-      <input type="text" name="professorDocumentRG" class="form-control">
-    </div>
+      <div class="form-group">
+        <label for="professorDocumentRG">Professor RG / Document: </label>
+        <input type="text" name="professorDocumentRG" class="form-control">
+      </div>
 
-    <div class="form-group">
-      <label for="professorTelefoneCell">Professor Cell Phone: </label>
-      <input type="number" name="professorTelefoneCell" class="form-control">
-    </div>
+      <div class="form-group">
+        <label for="professorTelefoneCell">Professor Cell Phone: </label>
+        <input type="number" name="professorTelefoneCell" class="form-control">
+      </div>
 
-    <div class="form-group">
-      <label for="professorTelefoneFixed">Professor Fixed Phone: </label>
-      <input type="number" name="professorTelefoneFixed" class="form-control">
-    </div>
+      <div class="form-group">
+        <label for="professorTelefoneFixed">Professor Fixed Phone: </label>
+        <input type="number" name="professorTelefoneFixed" class="form-control">
+      </div>
 
-    <div class="form-group">
-      <label for="emergencyContactName">Emergency Contact Name: </label>
-      <input type="text" name="emergencyContactName" class="form-control">
-    </div>
+      <div class="form-group">
+        <label for="emergencyContactName">Emergency Contact Name: </label>
+        <input type="text" name="emergencyContactName" class="form-control">
+      </div>
 
-    <div class="form-group">
-      <label for="emergencyContactTelephone">Emergency Contact Cell Phone:</label>
-      <input type="number" name="emergencyContactTelephone" class="form-control">
-    </div>
+      <div class="form-group">
+        <label for="emergencyContactTelephone">Emergency Contact Cell Phone:</label>
+        <input type="number" name="emergencyContactTelephone" class="form-control">
+      </div>
 
-    {{!-- Unique ID and Timestamps created automatically --}}
+      {{!-- Unique ID and Timestamps created automatically --}}
 
-    <button type="submit">Submit</button>
-  </form>
+      <button type="submit">Submit</button>
+    </form>
 
-  <a href="/app">
-    <button name="return">Return to Control Panel</button><br><br>
-  </a>
+    <a href="/app">
+      <button name="return">Return to Control Panel</button><br><br>
+    </a>
 
+  </div>
 </div>

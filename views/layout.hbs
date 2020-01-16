@@ -7,26 +7,26 @@
     <title>Iron School</title>
     {{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/style-AC.css">
 </head>
 
 <body>
         {{!-- navbar --}}
 
     
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-      <a class="my-0 mr-md-auto font-weight-normal img-logo" href="#"><img src="../public/images/logo-main.png"
+    <div class="d-flex flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm height-override">
+      <a class="my-0 mr-auto font-weight-normal img-logo" href="#"><img src="../public/images/logo-main.png"
           alt="iron-school-logo">
       </a>
 
-      <nav class="my-2 my-md-0 mr-md-3">
+      {{!-- <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark" href="#">Sobre</a>
         <a class="p-2 text-dark" href="#">Funcionalidade</a>
         <a class="p-2 text-dark" href="#">Contato</a>
-      </nav>
-      <a class="btn btn-outline-success" href="/login">Login</a>
-      <a class="btn btn-outline-failure" href="/logout">Logout</a>
-      <a class="btn btn-outline-primary" href="/signup">Sign Up</a>
+      </nav> --}}
+      <a class="btn btn-outline-primary nav-padding-adjust" href="/">Home</a>
+      <a class="btn btn-outline-success nav-padding-adjust" href="/login">Login</a>
+      <a class="btn dark-red nav-padding-adjust" href="/logout">Logout</a>
     </div>
 
     <div class="main-container">
@@ -35,7 +35,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
 
-    <footer>
+    <footer id="footer-format" class="height-override">
       <p>This is my footer all the time.</p>
     </footer>
 

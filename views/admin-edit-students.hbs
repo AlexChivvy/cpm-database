@@ -1,34 +1,36 @@
-<h1>Delete / Edit Students</h1>
-<br>
-
-{{#each result}}
-<div class="input-form">
-
-  <div class="input-row">
-
-    <div class="input-components">
-      <h2>{{studentName}}</h2>
-      <h3>{{responsibleAdultName}}</h3>
-    </div>
-
-    <div class="input-components">
-
-      <a href="/edit-student-form/{{_id}}">
-        <button name="edit">Edit</button><br><br>
-      </a>
-
-      <a href="/delete-student-refresh/{{_id}}">
-        <button name="delete">Delete</button><br><br>
-      </a>
-
-    </div>
-  </div>
+<div class="centered-no-direction">
+  <h1>Delete / Edit Students</h1>
   <br>
+
+  {{#each result}}
+  <div class="input-form" "centered">
+
+    <div class="input-row">
+
+      <div class="input-components">
+        <h2>{{studentName}}</h2>
+        <h3>{{responsibleAdultName}}</h3>
+      </div>
+
+      <div class="input-components">
+
+        <a href="/edit-student-form/{{_id}}">
+          <button name="edit">Edit</button><br><br>
+        </a>
+
+        <a href="/delete-student-refresh/{{_id}}">
+          <button name="delete">Delete</button><br><br>
+        </a>
+
+      </div>
+    </div>
+    <br>
+  </div>
+  {{/each}}
+
+
+  <br>
+  <a href="/app">
+    <button name="return">Return to Control Panel</button><br><br>
+  </a>
 </div>
-{{/each}}
-
-
-<br>
-<a href="/app">
-  <button name="return">Return to Control Panel</button><br><br>
-</a>

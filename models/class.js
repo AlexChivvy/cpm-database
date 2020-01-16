@@ -20,7 +20,7 @@ const ClassRecordSchema = new Schema({
   },
   classDate: Date,
   classProfessor: String,
-
+  classDateDeepFixed: String,
   // ADMIN
   timestampCreated: Date,
   timestampEdited: Date,

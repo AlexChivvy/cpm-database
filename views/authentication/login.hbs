@@ -1,27 +1,30 @@
+<div class="centered">
 <form action="/login" method="POST" id="form">
-  <h2>Login</h2>
 
-  <label for="username">Username</label>
-  <input type="text" name="username">
+  <h2>Login</h2><br>
 
-  <label for="password">Password</label>
-  <input type="password" name="password">
+  <label for="username">User &nbsp; </label>
+  <input type="text" name="username" placeholder="Your username">
+  <br>
+
+  <label for="password">Pass  &nbsp; </label>
+  <input type="password" name="password" placeholder="********">
 
   {{#if errorMessage }}
   <div class="error-message">{{ errorMessage }}</div>
   {{/if}}
-
-  <button>Sign in</button>
+  <br>
+  <button>Sign In</button><br><br>
 
   <p class="account-message">
-    Don't have an account? <a href="/signup">Sign up</a>
+    Don't have an account? <br>
+    <a href="/signup">Sign up here.</a>
   </p>
 
   {{#unless user}}
-  Home page
   <div>
-    <a href="/auth/google">Login With Google</a>
+    <a href="/auth/google">Or log in with Google.</a>
   </div>
 {{/unless}}
-
 </form>
+</div>

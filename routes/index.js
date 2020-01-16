@@ -98,15 +98,15 @@ router.get('/class-register', checkAdmin, (req, res, next) => {
 //limite juliane
 
 // CLASS PROFESSOR INPUT RELEVANT INFORMATION
-router.get(`/class-input-report`, checkAdminProfessor, (req, res, next) => {
-  Student.find()
-    .then(result => {
-      res.render('professor-input', {
-        result
-      });
-    })
-    .catch(err => console.log(`Error while showing all students: ${err}`));
-});
+// router.get(`/class-input-report`, checkAdminProfessor, (req, res, next) => {
+//   Student.find()
+//     .then(result => {
+//       res.render('professor-input', {
+//         result
+//       });
+//     })
+//     .catch(err => console.log(`Error while showing all students: ${err}`));
+// });
 
 router.get('/class-register', (req, res, next) => {
   res.render('admin-class');
@@ -115,6 +115,7 @@ router.get('/class-register', (req, res, next) => {
 router.post('/class-record-form', (req, res, next) => {
   //first instantiate a new object on the basis of your existing model
   const newClass = new Class(req.body)
+  newClass.classDateDeepFixed = dateSimpleConvert(newClass.classDate).substring(0, 10);
   newClass.timestampCreated = Date.now();
   //then save the new object in your database
   newClass
@@ -132,7 +133,7 @@ router.get(`/class-list`, checkAdminProfessor, (req, res, next) => {
         result
       });
     })
-    .catch(err => console.log(`Error while showing all students: ${err}`));
+    .catch(err => console.log(`Error while showing all classes: ${err}`));
 })
 
 // CLASS PROFESSOR INPUT RELEVANT INFORMATION
@@ -161,7 +162,7 @@ router.post(`/class-input-report/:id`, (req, res, next) => {
     gradeExam,
     studentUniqueID
   } = req.body;
-
+  console.log(req.body)
   //req.body passes a series of arrays which must be separated
   for (let i = 0; i < req.body.studentUniqueID.length; i += 1) {
     const newInput = {};
@@ -180,7 +181,7 @@ router.post(`/class-input-report/:id`, (req, res, next) => {
     })
     newClassStudentRegister
       .save()
-      .then(newClassStudentRegisterCreated => res.send(`A new class student register is created: ${newClassStudentRegister}!`))
+      .then(newClassStudentRegisterCreated => res.render('professor-class-list', {successMessage: "Record sucessfully created!"}))
       .catch(err => console.log(`Error while creating a new class student register: ${err}`));
   }
 });
