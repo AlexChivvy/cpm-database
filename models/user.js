@@ -9,7 +9,7 @@ const userSchema = new Schema({
   googleID: String,
   role: {
     type: String,
-    enum: ['STUDENT', 'TEACHER', 'DIRECTOR'],
+    enum: ['STUDENT', 'PROFESSOR', 'ADMIN'],
     default: 'STUDENT'
   }
 }, {
