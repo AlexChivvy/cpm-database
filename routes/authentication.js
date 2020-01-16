@@ -45,7 +45,7 @@ router.post("/signup", (req, res, next) => {
           role
         })
         .then(() => {
-          res.redirect("/");
+          res.redirect("/app");
         })
         .catch(error => {
           console.log(error);
@@ -77,6 +77,21 @@ router.post("/login", passport.authenticate("local", {
   passReqToCallback: true,
 }));
 
+//logout
+router.get("/logout", (req, res) => {
+  const UserNavData = {
+    UserName: "Not Logged In",
+    AcessLevel: "No"
+  }
+  if (req.user) {
+    UserNavData.UserName = req.user.username;
+    UserNavData.AcessLevel = req.user.role;
+  }
+  req.logout();
+  res.redirect("/login");
+  res.render({UserNavData});
+});
+
 //google
 router.get(
   "/auth/google",
@@ -91,7 +106,7 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google", {
     successRedirect: "/private-page",
-    failureRedirect: "/"
+    failureRedirect: "/login"
   })
 );
 

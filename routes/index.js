@@ -33,6 +33,12 @@ router.get('/app', checkAdminProfessorStudent, (req, res, next) => {
   res.render("index", {UserNavData});
 });
 
+// ACCESS DENIED
+
+router.get('/access-denied', (req, res, next) => {
+  res.render("access-denied");
+});
+
 // MOUNT AUTH ROUTES
 router.use('/', require('./authentication'))
 

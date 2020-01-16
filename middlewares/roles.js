@@ -8,7 +8,7 @@ const checkRoles = (role) => {
       return next();
     } else {
       // next()
-      res.redirect('/login')
+      res.redirect('/access-denied')
     }
   }
 }
@@ -19,7 +19,7 @@ const checkTwoRoles = (admin, professor) => {
     if (req.isAuthenticated() && (req.user.role === admin || req.user.role === professor)) {
       return next();
     } else {
-      res.redirect('/login')
+      res.redirect('/access-denied')
     }
   }
 }
@@ -30,7 +30,7 @@ const checkThreeRoles = (admin, professor, student) => {
     if (req.isAuthenticated() && (req.user.role === admin || req.user.role === professor || req.user.role === student)) {
       return next();
     } else {
-      res.redirect('/login')
+      res.redirect('/access-denied')
     }
   }
 }
