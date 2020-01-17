@@ -20,8 +20,8 @@ const Professor = require('../models/professor.js');
 const Class = require('../models/class.js');
 const ClassStudentRegister = require('../models/class-student-register.js');
 
-// HOME PAGE
-router.get('/app', checkAdminProfessorStudent, (req, res, next) => {
+// HOME PAGE usar checkAdminProfessorStudent,
+router.get('/app',  (req, res, next) => {
   const UserNavData = {
     UserName: "Not Logged In",
     AcessLevel: "No"
