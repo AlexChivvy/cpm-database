@@ -2,7 +2,6 @@
 
 const express = require('express');
 const router = express.Router();
-
 const Student = require('../models/student.js');
 const Professor = require('../models/professor.js');
 const Class = require('../models/class.js');

@@ -12,7 +12,9 @@
 }
 
 #form input,
-#form button {
+#form button,
+.role,
+#googleBtn{
   box-sizing: border-box;
   font-size: 14px;
   outline: 0;
@@ -22,8 +24,8 @@
 }
 
 #form button {
-  background: #43a3e6;
-  border: 1px solid #43a3e6;
+  background: #2A5EA3;
+  border: 1px solid #2A5EA3;
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
@@ -38,15 +40,39 @@
 
 #form button:hover {
   background: #fff;
-  color: #43a3e6;
+  color: #2A5EA3;
   transition: .3s ease background;
 }
 
+#form h2 {
+  text-align: center;
+  color: #2A5EA3;
+}
+
+.account-message {
+  display: flex;
+  justify-content: space-evenly;
+  /* flex-wrap: wrap; */
+}
+
 .error-message {
-  background: #F02B63;
+  background: #F49649;
   box-sizing: border-box;
   color: #fff;
   margin: 20px auto;
   padding: 20px;
   width: 100%;
+}
+
+span.icon {
+  background: url('https://google-developers.appspot.com/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  width: 42px;
+  height: 42px;
+  /* border-right: 1px solid #2A5EA3; */
+}
+
+.buttonText {
+  color: black;
 }
