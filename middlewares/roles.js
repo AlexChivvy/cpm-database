@@ -30,7 +30,7 @@ const checkThreeRoles = (admin, professor, student) => {
     if (req.isAuthenticated() && (req.user.role === admin || req.user.role === professor || req.user.role === student)) {
       return next();
     } else {
-      res.redirect('/access-denied')
+      res.redirect('/login')
     }
   }
 }

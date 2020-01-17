@@ -21,9 +21,9 @@ const {
 } = require('./userNavData');
 
 // HOME PAGE 
-router.get('/app', (req, res, next) => {
+router.get('/app', checkAdminProfessorStudent, (req, res, next) => {
   const userNavData = getUserNavData(req);
-  res.render("index", checkAdminProfessorStudent, {
+  res.render("index",  {
     userNavData
   });
 });
