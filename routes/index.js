@@ -20,10 +20,10 @@ const {
   getUserNavData
 } = require('./userNavData');
 
-// HOME PAGE usar checkAdminProfessorStudent,
+// HOME PAGE 
 router.get('/app', (req, res, next) => {
   const userNavData = getUserNavData(req);
-  res.render("index", {
+  res.render("index", checkAdminProfessorStudent, {
     userNavData
   });
 });
