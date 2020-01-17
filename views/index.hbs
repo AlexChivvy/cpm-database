@@ -1,41 +1,55 @@
-<div class="centered">
-  <h1>Database Control Panel</h1><br>
-  <p>
-      <b>User:</b> <i>{{UserNavData.UserName}} </i> &nbsp; &nbsp; <b>Access:</b> <i>{{UserNavData.AcessLevel}}</i> 
-  </p>
-  <br>
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="center-text">
-    <h2>Admin Functions</h2>
-</div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Homepage</title>
+</head>
+
+<body>
+  <div class="centered">
+    <h1>Database Control Panel</h1><br>
+    <p>
+      <b>User:</b> <i>{{userNavData.userName}} </i> &nbsp; &nbsp; <b>Access:</b> <i>{{userNavData.acessLevel}}</i>
+    </p>
+    <br>
+
+    <div class="center-text">
+      <h2>Admin Functions</h2>
+    </div>
     {{!-- <a href="/professor-register">
       <button name="add-professor-button">Add Professor</button><br><br>
     </a> --}}
-<div>
-    <a href="/class-register">
-      <button name="add-class-button">Add Class</button>
-    </a>
+    <div>
+      <a href="/class-register">
+        <button name="add-class-button">Add Class</button>
+      </a>
 
-    <a href="/student-register">
-      <button name="add-student-button">Add Student</button>
-    </a>
+      <a href="/student-register">
+        <button name="add-student-button">Add Student</button>
+      </a>
 
-    <a href="/edit-students">
-      <button name="add-student-button">Edit or Remove Student</button>
-    </a>
-</div>
-<br><br>
-<div>
-  <h2>Professor Functions</h2>
-</div>
-<div>
-  <a href="/class-list">
-    <button name="class-list">Class Input</button>
-  </a>
+      <a href="/edit-students">
+        <button name="add-student-button">Edit or Remove Student</button>
+      </a>
+    </div>
+    <br><br>
+    <div>
+      <h2>Professor Functions</h2>
+    </div>
+    <div>
+      <a href="/class-list">
+        <button name="class-list">Class Input</button>
+      </a>
 
-  <a href="/student-report-all">
-    <button name="student-report-all-button">Review Students</button>
-  </a>
+      <a href="/student-report-all">
+        <button name="student-report-all-button">Review Students</button>
+      </a>
+    </div>
   </div>
-  </div>
-</div>
+
+</body>
+
+</html>

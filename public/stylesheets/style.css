@@ -1,32 +1,95 @@
-html {
-  height: 100%;
+* {
+  margin: 0;
+  padding: 0;
+  color: #1a1a1a;
+  font-family: Helvetica, Arial, sans-serif;
 }
-body {
-  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  min-height: 100%;
+
+.img {
+  height: 25%;
+  width: 25%;
+}
+
+.logo {
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.main-container {
+  margin-top: 99px;
+  /* background-color: red; */
+}
+
+#home {
+  background-image: url("../images/blocos.jpg");
+  background-size: cover;
+}
+
+#home .jumbotron {
+  background-color:  rgba(153, 153, 153, .4);
+}
+
+.lead {
+  font-size: 30px;
+}
+
+.home-text {
+  display: flex;
+  justify-content: center;
   flex-direction: column;
-}
-.content {
-  flex: 1;
+  align-items: center;
 }
 
-
-.input-form{
-  width: 100%;
-	display: flex;
-  flex-direction: column;
+.home-text h1, .home-text p{
+  color: ivory;
 }
 
-.input-row{
-  width: 75%;
-	display: flex;
-	flex-direction: row;
+#start {
+  height: 50vh;
+  background-image: url("../images/imagem-de-fund-02.png");
+  /* background-image: url("../images/imagem-de-fund01.png"); */
+  background-repeat: repeat;
+  font-size: 25px;
 }
 
-.input-components{
-  width: 50%;
-	display: flex;
-	flex-direction: column;
+#half {
+  min-height: 50vh;
+  background-image: url("../images/crianca-pintando.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.half-gray {
+  position: absolute;
+  background-color: rgba(153, 153, 153, .7);
+}
+
+.half-text {
+  text-align: center;
+}
+
+.half-text h1,
+.half-text p {
+  color: ivory;
+}
+
+.half-text p {
+  font-size: 25px;
+}
+
+#end {
+  display: flex;
+  justify-content: space-around;
+}
+
+.end-address {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.img-end {
+  height: 50%;
 }

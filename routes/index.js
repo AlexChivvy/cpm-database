@@ -19,18 +19,12 @@ const Student = require('../models/student.js');
 const Professor = require('../models/professor.js');
 const Class = require('../models/class.js');
 const ClassStudentRegister = require('../models/class-student-register.js');
+const {getUserNavData} = require('./userNavData');
 
-// HOME PAGE
-router.get('/app', checkAdminProfessorStudent, (req, res, next) => {
-  const UserNavData = {
-    UserName: "Not Logged In",
-    AcessLevel: "No"
-  }
-  if (req.user) {
-    UserNavData.UserName = req.user.username;
-    UserNavData.AcessLevel = req.user.role;
-  }
-  res.render("index", {UserNavData});
+// HOME PAGE usar checkAdminProfessorStudent,
+router.get('/app',  (req, res, next) => {
+  const userNavData = getUserNavData(req);
+  res.render("index", {userNavData});
 });
 
 // ACCESS DENIED
