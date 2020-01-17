@@ -58,9 +58,6 @@ router.get(`/student-report-individual/:id`, (req, res, next) => {
 });
 
 
-
-
-
 // Date conversion function
 const dateSimpleConvert = (input) => {
   return input.toISOString()

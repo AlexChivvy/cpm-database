@@ -9,46 +9,46 @@
 </head>
 
 <body>
-  <section class="container-fluid">
-    <div class="container">
-      <h1>This is the Homepage.</h1>
+  <div class="centered">
+    <h1>Database Control Panel</h1><br>
+    <p>
+      <b>User:</b> <i>{{userNavData.userName}} </i> &nbsp; &nbsp; <b>Access:</b> <i>{{userNavData.acessLevel}}</i>
+    </p>
+    <br>
 
+    <div class="center-text">
       <h2>Admin Functions</h2>
-
-      <a href="/professor-register">
-        <button name="add-professor-button">Add Professor</button><br><br>
-      </a>
-
+    </div>
+    {{!-- <a href="/professor-register">
+      <button name="add-professor-button">Add Professor</button><br><br>
+    </a> --}}
+    <div>
       <a href="/class-register">
-        <button name="add-class-button">Add Class</button><br><br>
+        <button name="add-class-button">Add Class</button>
       </a>
 
       <a href="/student-register">
-        <button name="add-student-button">Add Student</button><br><br>
+        <button name="add-student-button">Add Student</button>
       </a>
 
       <a href="/edit-students">
-        <button name="add-student-button">Edit or Remove Student</button><br><br>
+        <button name="add-student-button">Edit or Remove Student</button>
       </a>
     </div>
-
-    <div class="container">
+    <br><br>
+    <div>
       <h2>Professor Functions</h2>
+    </div>
+    <div>
       <a href="/class-list">
-        <button name="class-list">Class Input Report</button><br><br>
+        <button name="class-list">Class Input</button>
       </a>
-    </div>
 
-    <div class="container">
-      <h2>Student Reports</h2>
       <a href="/student-report-all">
-        <button name="student-report-all-button">Student Reports - All</button><br><br>
-      </a>
-      <a href="/student-report-individual">
-        <button name="student-report-individual-button">Student Report - Individual</button><br><br>
+        <button name="student-report-all-button">Review Students</button>
       </a>
     </div>
-  </section>
+  </div>
 
 </body>
 

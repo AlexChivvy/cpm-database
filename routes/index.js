@@ -19,18 +19,18 @@ const Student = require('../models/student.js');
 const Professor = require('../models/professor.js');
 const Class = require('../models/class.js');
 const ClassStudentRegister = require('../models/class-student-register.js');
+const {getUserNavData} = require('./userNavData');
 
 // HOME PAGE usar checkAdminProfessorStudent,
 router.get('/app',  (req, res, next) => {
-  const UserNavData = {
-    UserName: "Not Logged In",
-    AcessLevel: "No"
-  }
-  if (req.user) {
-    UserNavData.UserName = req.user.username;
-    UserNavData.AcessLevel = req.user.role;
-  }
-  res.render("index", {UserNavData});
+  const userNavData = getUserNavData(req);
+  res.render("index", {userNavData});
+});
+
+// ACCESS DENIED
+
+router.get('/access-denied', (req, res, next) => {
+  res.render("access-denied");
 });
 
 // MOUNT AUTH ROUTES
@@ -50,7 +50,7 @@ router.post('/student-record-form', (req, res, next) => {
   //then save the new object in your database
   newStudent
     .save()
-    .then(newStudentCreated => res.send(`A new student is created: ${newStudentCreated}!`))
+    .then(newStudentCreated => res.render('admin-student', {successMessage: "Student sucessfully created!"}))
     .catch(err => console.log(`Error while creating a new student: ${err}`));
 });
 
@@ -74,34 +74,33 @@ router.post('/professor-record-form', (req, res, next) => {
 
 // CLASS ADMIN RELEVANT INFORMATION
 
-
 router.get('/class-register', checkAdmin, (req, res, next) => {
   res.render('admin-class');
 });
 
-router.post('/class-record-form', (req, res, next) => {
-  //first instantiate a new object on the basis of your existing model
-  const newProfessor = new Professor(req.body)
-  newProfessor.timestampCreated = Date.now();
-  //then save the new object in your database
-  newProfessor
-    .save()
-    .then(newProfessorCreated => res.send(`A new professor is created: ${newProfessorCreated}!`))
-    .catch(err => console.log(`Error while creating a new professor: ${err}`));
-});
+// router.post('/class-record-form', (req, res, next) => {
+//   //first instantiate a new object on the basis of your existing model
+//   const newProfessor = new Professor(req.body)
+//   newProfessor.timestampCreated = Date.now();
+//   //then save the new object in your database
+//   newProfessor
+//     .save()
+//     .then(newProfessorCreated => res.send(`A new professor is created: ${newProfessorCreated}!`))
+//     .catch(err => console.log(`Error while creating a new professor: ${err}`));
+// });
 
 //limite juliane
 
 // CLASS PROFESSOR INPUT RELEVANT INFORMATION
-router.get(`/class-input-report`, checkAdminProfessor, (req, res, next) => {
-  Student.find()
-    .then(result => {
-      res.render('professor-input', {
-        result
-      });
-    })
-    .catch(err => console.log(`Error while showing all students: ${err}`));
-});
+// router.get(`/class-input-report`, checkAdminProfessor, (req, res, next) => {
+//   Student.find()
+//     .then(result => {
+//       res.render('professor-input', {
+//         result
+//       });
+//     })
+//     .catch(err => console.log(`Error while showing all students: ${err}`));
+// });
 
 router.get('/class-register', (req, res, next) => {
   res.render('admin-class');
@@ -110,11 +109,12 @@ router.get('/class-register', (req, res, next) => {
 router.post('/class-record-form', (req, res, next) => {
   //first instantiate a new object on the basis of your existing model
   const newClass = new Class(req.body)
+  newClass.classDateDeepFixed = dateSimpleConvert(newClass.classDate).substring(0, 10);
   newClass.timestampCreated = Date.now();
   //then save the new object in your database
   newClass
     .save()
-    .then(newClassCreated => res.send(`A new class is created: ${newClassCreated}!`))
+    .then(newClassCreated => res.render('admin-class', {successMessage: "Class sucessfully created!"}))
     .catch(err => console.log(`Error while creating a new class: ${err}`));
 });
 
@@ -127,7 +127,7 @@ router.get(`/class-list`, checkAdminProfessor, (req, res, next) => {
         result
       });
     })
-    .catch(err => console.log(`Error while showing all students: ${err}`));
+    .catch(err => console.log(`Error while showing all classes: ${err}`));
 })
 
 // CLASS PROFESSOR INPUT RELEVANT INFORMATION
@@ -156,7 +156,7 @@ router.post(`/class-input-report/:id`, (req, res, next) => {
     gradeExam,
     studentUniqueID
   } = req.body;
-
+  console.log(req.body)
   //req.body passes a series of arrays which must be separated
   for (let i = 0; i < req.body.studentUniqueID.length; i += 1) {
     const newInput = {};
@@ -175,7 +175,7 @@ router.post(`/class-input-report/:id`, (req, res, next) => {
     })
     newClassStudentRegister
       .save()
-      .then(newClassStudentRegisterCreated => res.send(`A new class student register is created: ${newClassStudentRegister}!`))
+      .then(newClassStudentRegisterCreated => res.render('professor-class-list', {successMessage: "Record sucessfully created!"}))
       .catch(err => console.log(`Error while creating a new class student register: ${err}`));
   }
 });

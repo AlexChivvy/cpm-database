@@ -4,9 +4,7 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 const passport = require("passport");
-const {
-  checkDirector
-} = require("../middlewares/roles");
+const {getUserNavData} = require('./userNavData');
 
 //signup
 router.get("/signup", (req, res, next) => {
@@ -45,7 +43,7 @@ router.post("/signup", (req, res, next) => {
           role
         })
         .then(() => {
-          res.redirect("/");
+          res.redirect("/login");
         })
         .catch(error => {
           console.log(error);
@@ -59,15 +57,10 @@ router.post("/signup", (req, res, next) => {
 
 //login
 router.get("/login", (req, res, next) => {
-  let UserNavData = {
-    UserName: "Not Logged In",
-    AcessLevel: "No"
-  }
-  if (req.user) {
-    UserNavData.UserName = req.user.username;
-    UserNavData.AcessLevel = req.user.role;
-  }
-  res.render("authentication/login", {UserNavData});
+
+  const userNavData = getUserNavData(req);
+
+  res.render("authentication/login", {userNavData});
 });
 
 router.post("/login", passport.authenticate("local", {
@@ -76,6 +69,12 @@ router.post("/login", passport.authenticate("local", {
   failureFlash: true,
   passReqToCallback: true,
 }));
+
+//logout
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/login");
+});
 
 //google
 router.get(
@@ -91,7 +90,7 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google", {
     successRedirect: "/private-page",
-    failureRedirect: "/"
+    failureRedirect: "/login"
   })
 );
 
