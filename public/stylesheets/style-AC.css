@@ -45,12 +45,6 @@ body {
   max-height: 100px;
 }
 
-#footer-format {
-  background-color: rgb(0, 0, 100);
-  color: white;
-  text-align: center;
-}
-
 .dark-red {
   color: darkred;
 }

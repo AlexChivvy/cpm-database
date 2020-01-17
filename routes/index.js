@@ -1,10 +1,8 @@
 // The EXPRESS framework is built on top of the NODE.JS framework and helps in fast-tracking development of server-based applications by using routes to divert users to different parts of the web application based on the request made / flow information through the app.
-
 const express = require('express');
 const router = express.Router();
 
 // Link the models to this index
-
 //check permissions
 const {
   checkRoles,
@@ -14,33 +12,40 @@ const {
   checkAdminProfessor,
   checkAdminProfessorStudent
 } = require("../middlewares/roles");
-
 const Student = require('../models/student.js');
 const Professor = require('../models/professor.js');
 const Class = require('../models/class.js');
 const ClassStudentRegister = require('../models/class-student-register.js');
-const {getUserNavData} = require('./userNavData');
+const {
+  getUserNavData
+} = require('./userNavData');
 
 // HOME PAGE usar checkAdminProfessorStudent,
-router.get('/app',  (req, res, next) => {
+router.get('/app', (req, res, next) => {
   const userNavData = getUserNavData(req);
-  res.render("index", {userNavData});
+  res.render("index", {
+    userNavData
+  });
 });
 
 // ACCESS DENIED
-
 router.get('/access-denied', (req, res, next) => {
-  res.render("access-denied");
+  const userNavData = getUserNavData(req);
+  res.render("access-denied", {
+    userNavData
+  });
 });
 
 // MOUNT AUTH ROUTES
 router.use('/', require('./authentication'))
 
 // STUDENT ADMIN RELEVANT INFORMATION
-
 //checkAdmin only the director has access
 router.get('/student-register', checkAdmin, (req, res, next) => {
-  res.render('admin-student');
+  const userNavData = getUserNavData(req);
+  res.render('admin-student', {
+    userNavData
+  });
 });
 
 router.post('/student-record-form', (req, res, next) => {
@@ -50,16 +55,19 @@ router.post('/student-record-form', (req, res, next) => {
   //then save the new object in your database
   newStudent
     .save()
-    .then(newStudentCreated => res.render('admin-student', {successMessage: "Student sucessfully created!"}))
+    .then(newStudentCreated => res.render('admin-student', {
+      successMessage: "Student sucessfully created!"
+    }))
     .catch(err => console.log(`Error while creating a new student: ${err}`));
 });
 
 // PROFESSOR ADMIN RELEVANT INFORMATION
-
 router.get('/professor-register', checkAdmin, (req, res, next) => {
-  res.render('admin-professor');
+  const userNavData = getUserNavData(req);
+  res.render('admin-professor', {
+    userNavData
+  });
 });
-
 
 router.post('/professor-record-form', (req, res, next) => {
   //first instantiate a new object on the basis of your existing model
@@ -73,9 +81,11 @@ router.post('/professor-record-form', (req, res, next) => {
 });
 
 // CLASS ADMIN RELEVANT INFORMATION
-
 router.get('/class-register', checkAdmin, (req, res, next) => {
-  res.render('admin-class');
+  const userNavData = getUserNavData(req);
+  res.render('admin-class', {
+    userNavData
+  });
 });
 
 // router.post('/class-record-form', (req, res, next) => {
@@ -89,8 +99,6 @@ router.get('/class-register', checkAdmin, (req, res, next) => {
 //     .catch(err => console.log(`Error while creating a new professor: ${err}`));
 // });
 
-//limite juliane
-
 // CLASS PROFESSOR INPUT RELEVANT INFORMATION
 // router.get(`/class-input-report`, checkAdminProfessor, (req, res, next) => {
 //   Student.find()
@@ -103,7 +111,10 @@ router.get('/class-register', checkAdmin, (req, res, next) => {
 // });
 
 router.get('/class-register', (req, res, next) => {
-  res.render('admin-class');
+  const userNavData = getUserNavData(req);
+  res.render('admin-class', {
+    userNavData
+  });
 });
 
 router.post('/class-record-form', (req, res, next) => {
@@ -114,7 +125,9 @@ router.post('/class-record-form', (req, res, next) => {
   //then save the new object in your database
   newClass
     .save()
-    .then(newClassCreated => res.render('admin-class', {successMessage: "Class sucessfully created!"}))
+    .then(newClassCreated => res.render('admin-class', {
+      successMessage: "Class sucessfully created!"
+    }))
     .catch(err => console.log(`Error while creating a new class: ${err}`));
 });
 
@@ -123,24 +136,27 @@ router.post('/class-record-form', (req, res, next) => {
 router.get(`/class-list`, checkAdminProfessor, (req, res, next) => {
   Class.find()
     .then(result => {
+      const userNavData = getUserNavData(req);
       res.render('professor-class-list', {
-        result
+        result,
+        userNavData
       });
     })
     .catch(err => console.log(`Error while showing all classes: ${err}`));
 })
 
 // CLASS PROFESSOR INPUT RELEVANT INFORMATION
-
 router.get(`/class-input-report/:id`, checkAdminProfessor, (req, res, next) => {
   const {
     id
   } = req.params;
   Student.find()
     .then(result => {
+      const userNavData = getUserNavData(req);
       res.render('professor-input', {
         result,
-        id
+        id,
+        userNavData
       });
     })
     .catch(err => console.log(`Error while showing all students: ${err}`));
@@ -175,7 +191,9 @@ router.post(`/class-input-report/:id`, (req, res, next) => {
     })
     newClassStudentRegister
       .save()
-      .then(newClassStudentRegisterCreated => res.render('professor-class-list', {successMessage: "Record sucessfully created!"}))
+      .then(newClassStudentRegisterCreated => res.render('professor-class-list', {
+        successMessage: "Record sucessfully created!"
+      }))
       .catch(err => console.log(`Error while creating a new class student register: ${err}`));
   }
 });
@@ -184,8 +202,10 @@ router.post(`/class-input-report/:id`, (req, res, next) => {
 router.get(`/edit-students`, checkAdmin, (req, res, next) => {
   Student.find()
     .then(result => {
+      const userNavData = getUserNavData(req);
       res.render('admin-edit-students', {
-        result
+        result,
+        userNavData
       });
     })
     .catch(err => console.log(`Error while showing all students: ${err}`));
@@ -198,10 +218,12 @@ router.get(`/edit-student-form/:id`, checkAdmin, (req, res, next) => {
   } = req.params;
   Student.findById(id)
     .then(result => {
+      const userNavData = getUserNavData(req);
       //Fix the date using the below formula
       res.render('admin-edit-students-form', {
         result,
-        fixedDate: dateSimpleConvert(result.studentBirthday).substring(0, 10)
+        fixedDate: dateSimpleConvert(result.studentBirthday).substring(0, 10),
+        userNavData
       });
     })
     .catch(err => console.log(`Error while showing all students: ${err}`));
@@ -241,15 +263,16 @@ router.get(`/delete-student-refresh/:id`, checkAdmin, (req, res, next) => {
 router.get(`/student-report-individual`, (req, res, next) => {
   Student.find()
     .then(result => {
+      const userNavData = getUserNavData(req);
       res.render('student-report-individual', {
-        result
+        result,
+        userNavData
       });
     })
     .catch(err => console.log(`Error while showing all students: ${err}`));
 })
 
 // Formula to fix date
-
 const dateSimpleConvert = (input) => {
   return input.toISOString()
 }

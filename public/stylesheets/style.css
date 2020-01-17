@@ -5,6 +5,11 @@
   font-family: Helvetica, Arial, sans-serif;
 }
 
+html, body {
+  min-height: 100%;
+}
+
+
 .img {
   height: 25%;
   width: 25%;
@@ -17,7 +22,6 @@
 }
 .main-container {
   margin-top: 99px;
-  /* background-color: red; */
 }
 
 #home {
@@ -92,4 +96,9 @@
 
 .img-end {
   height: 50%;
+}
+
+footer {
+  bottom: 0;
+  width: 100%;
 }
