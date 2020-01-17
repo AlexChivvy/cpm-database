@@ -16,8 +16,10 @@ const ClassStudentRegister = require('../models/class-student-register.js');
 router.get(`/student-report-all`, (req, res, next) => {
   Student.find()
     .then(result => {
+      const userNavData = getUserNavData(req);
       res.render('student-report-all', {
-        result, 
+        result,
+        userNavData
       });
     })
     .catch(err => console.log(`Error while showing all students: ${err}`));
@@ -29,10 +31,12 @@ router.get(`/student-report-individual/:id`, (req, res, next) => {
     id
   } = req.params;
 
-  ClassStudentRegister.find({studentUniqueID: id})
+  ClassStudentRegister.find({
+      studentUniqueID: id
+    })
     // Use populate to temporarily match within the ClassStudentRegister object the studentUniqueID variable, and replace it with the entire "student record"
-    .populate ("classUniqueID") 
-    .populate ("studentUniqueID")
+    .populate("classUniqueID")
+    .populate("studentUniqueID")
     .then(result => {
       console.log(`Result`, result)
       res.render('student-report-individual', {
@@ -41,10 +45,10 @@ router.get(`/student-report-individual/:id`, (req, res, next) => {
       });
     })
     .catch(err => console.log(`Error while showing all students: ${err}`));
-    
-    // .then (result => { 
-    //   exportStudentData(result)
-    // })
+
+  // .then (result => { 
+  //   exportStudentData(result)
+  // })
 
   // Student.findById(id)
   //   .then(result => {
@@ -140,7 +144,7 @@ const exportStudentData = input => {
   } else {
     reportedParticipationText = `Very Poor`;
   }
-  
+
   if (reportedExam != 0) {
     let examText = `TBD`;
     if (reportedExam > 9) {
@@ -154,9 +158,9 @@ const exportStudentData = input => {
     } else {
       examText = `Very Poor`;
     }
-    } else {
-      examText = `Not Applicable`;
-    }
+  } else {
+    examText = `Not Applicable`;
+  }
 
   const ExportObject = {
     totalDays: totalDays,
@@ -176,7 +180,3 @@ const exportStudentData = input => {
 
 // Export the module to the router
 module.exports = router;
-
-
-
-

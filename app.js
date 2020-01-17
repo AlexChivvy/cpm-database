@@ -17,6 +17,7 @@ const bcryptSalt = 10;
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const flash = require("connect-flash");
+const {getUserNavData} = require('./routes/userNavData');
 
 // mongoose configured to the ENV file, which locally runs on a specified port with a local database but once deployed will run on mLab database.
 
@@ -137,7 +138,8 @@ passport.use(
 
 // HOME PAGE
 app.get('/', (req, res, next) => {
-  res.render('home');
+  const userNavData = getUserNavData(req);
+  res.render('home', {userNavData});
 });
 
 const index = require('./routes/index');
